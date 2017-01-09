@@ -71,7 +71,8 @@ class AddClass extends Component {
   constructor(props) {
   	super(props);
   	this.state = {
-    	searchString: 'Chemistry 101'
+    	searchString: 'Chemistry 101',
+    	creditsString: '3'
   	};
   }
   onSearchTextChanged(event) {
@@ -79,12 +80,17 @@ class AddClass extends Component {
   	this.setState({ searchString: event.nativeEvent.text });
   	console.log(this.state.searchString);
   }
+  onCreditsChanged(event) {
+  	console.log('onCreditsChanged');
+  	this.setState({ creditsString: event.nativeEvent.text });
+  	console.log(this.state.creditsString);
+  }
   render() {
   	console.log('SearchPage.render');
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-          Input the name or code of the classes you want to add
+          Name/Code
         </Text>
         <View style={styles.flowRight}>
   		  <TextInput
@@ -92,6 +98,20 @@ class AddClass extends Component {
     	    value={this.state.searchString}
     	    onChange={this.onSearchTextChanged.bind(this)}
     		placeholder='Add via name or code'/>
+  			<TouchableHighlight style={styles.button}
+      			underlayColor='#013a1c'>
+    			<Text style={styles.buttonText}>Add</Text>
+  			</TouchableHighlight>
+		</View>
+        <Text style={styles.description}>
+          # of Credits
+        </Text>
+        <View style={styles.flowRight}>
+  		  <TextInput
+    	    style={styles.searchInput}
+    	    value={this.state.creditsString}
+    	    onChange={this.onCreditsChanged.bind(this)}
+    		placeholder='Number of Credits'/>
   			<TouchableHighlight style={styles.button}
       			underlayColor='#013a1c'>
     			<Text style={styles.buttonText}>Add</Text>

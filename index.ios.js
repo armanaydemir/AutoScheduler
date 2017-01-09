@@ -33,6 +33,7 @@ function CreateNewClass(name, code, times, credits, subclass){
   cl.times = times;
   cl.credits = credits;
   cl.subclass = subclass;
+  cl.selected_time = null;
   return cl;
 }
 
@@ -41,6 +42,22 @@ function CreateClassTime(start_time, end_time){
   ct.start_time = start_time;
   ct.end_time = end_time;
   return ct;
+}
+
+function CreateSubclass(times, code){
+  var sc = {};
+  sc.times = times;
+  sc.code = code;
+}
+
+function CreateSchedule(classes, preferences){
+  var schedule = {};
+
+  //have the actual creating schedule algo here
+  //
+  //
+  //ya see
+  schedule.classes = classes
 }
 
 class Home extends React.Component {

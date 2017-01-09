@@ -16,7 +16,9 @@ import {
   TouchableHighlight,
   ListView,
   ActivityIndicator,
-  Image
+  Image,
+  Platform,
+  Switch
 } from 'react-native';
 //---------------------------------------
 
@@ -72,7 +74,8 @@ class AddClass extends Component {
   	super(props);
   	this.state = {
     	searchString: 'Chemistry 101',
-    	creditsString: '3'
+    	creditsString: '3',
+    	switchIsOn: false
   	};
   }
   onSearchTextChanged(event) {
@@ -97,11 +100,8 @@ class AddClass extends Component {
     	    style={styles.searchInput}
     	    value={this.state.searchString}
     	    onChange={this.onSearchTextChanged.bind(this)}
-    		placeholder='Add via name or code'/>
-  			<TouchableHighlight style={styles.button}
-      			underlayColor='#013a1c'>
-    			<Text style={styles.buttonText}>Add</Text>
-  			</TouchableHighlight>
+    		placeholder='name and/or code'/>
+  			
 		</View>
         <Text style={styles.description}>
           # of Credits
@@ -112,11 +112,22 @@ class AddClass extends Component {
     	    value={this.state.creditsString}
     	    onChange={this.onCreditsChanged.bind(this)}
     		placeholder='Number of Credits'/>
-  			<TouchableHighlight style={styles.button}
-      			underlayColor='#013a1c'>
-    			<Text style={styles.buttonText}>Add</Text>
-  			</TouchableHighlight>
 		</View>
+		<View style={styles.flowRight}>
+			<Text style={styles.description}>
+         		Recitation/Lab
+        	</Text>
+	        <Switch
+	          onValueChange={(value) => this.setState({switchIsOn: value})}
+	          style={{marginBottom: 10}}
+	          value={this.state.switchIsOn} />
+      	</View>
+		<View style={styles.flowRight}>
+			<TouchableHighlight style={styles.button}
+	      		underlayColor='#013a1c'>
+	    		<Text style={styles.buttonText}>Continue</Text>
+	  		</TouchableHighlight>
+	  	</View>
       </View>
     );
   }

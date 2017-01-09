@@ -25,6 +25,24 @@ var styles = ReactNative.StyleSheet.create({
   }
 });
 
+
+function CreateNewClass(name, code, times, credits, subclass){
+  var cl = {};
+  cl.name = name;
+  cl.code = code;
+  cl.times = times;
+  cl.credits = credits;
+  cl.subclass = subclass;
+  return cl;
+}
+
+function CreateClassTime(start_time, end_time){
+  var ct = {};
+  ct.start_time = start_time;
+  ct.end_time = end_time;
+  return ct;
+}
+
 class Home extends React.Component {
   render() {
     return <ReactNative.Text style={styles.text}> Profile, Schedules, New Schedule</ReactNative.Text>;

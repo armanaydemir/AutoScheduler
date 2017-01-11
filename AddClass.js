@@ -88,6 +88,9 @@ class AddClass extends Component {
   	this.setState({ creditsString: event.nativeEvent.text });
   	console.log(this.state.creditsString);
   }
+  onContinuePressed(){
+  	console.log('onContinuePressed');
+  }
   render() {
   	console.log('SearchPage.render');
     return (
@@ -112,7 +115,7 @@ class AddClass extends Component {
     	    value={this.state.creditsString}
     	    onChange={this.onCreditsChanged.bind(this)}
     		placeholder='Number of Credits'/>
-		</View>
+		</View> 
 		<View style={styles.flowRight}>
 			<Text style={styles.description}>
          		Recitation/Lab
@@ -123,7 +126,8 @@ class AddClass extends Component {
 	          value={this.state.switchIsOn} />
       	</View>
 		<View style={styles.flowRight}>
-			<TouchableHighlight style={styles.button}
+			<TouchableHighlight style={styles.button} 
+				onPress={this.onContinuePressed.bind(this)}
 	      		underlayColor='#013a1c'>
 	    		<Text style={styles.buttonText}>Continue</Text>
 	  		</TouchableHighlight>
@@ -131,6 +135,18 @@ class AddClass extends Component {
       </View>
     );
   }
+}
+
+// part that adds the class times/schedule
+class ClassTimes extends Component {
+	constructor(props) {
+	  	super(props);
+	  	this.state = {
+	    	start: 0,
+	    	end: 0,
+	    	days: {}
+	  	};
+  	}
 }
 
 

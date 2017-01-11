@@ -37,10 +37,11 @@ function CreateNewClass(name, code, times, credits, subclass){
   return cl;
 }
 
-function CreateClassTime(start_time, end_time){
+function CreateClassTime(start_time, end_time, days){
   var ct = {};
   ct.start_time = start_time;
   ct.end_time = end_time;
+  ct.days = days; //array of strings that include 5 days of the week (m, t, w, th,)
   return ct;
 }
 

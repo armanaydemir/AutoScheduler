@@ -6,9 +6,11 @@
 
  //init --------------------------------
 'use strict';
+
  
 import React, { Component } from 'react'
 import {
+  DatePickerIOS,
   StyleSheet,
   Text,
   TextInput,
@@ -20,6 +22,7 @@ import {
   Platform,
   Switch
 } from 'react-native';
+
 //---------------------------------------
 
 var styles = StyleSheet.create({
@@ -75,8 +78,14 @@ class AddClass extends Component {
   	this.state = {
     	searchString: 'Chemistry 101',
     	creditsString: '3',
-    	switchIsOn: false
-  	};
+    	switchIsOn: false,
+    	date: new Date(),
+    	timeZoneOffsetInHours: (-1) * (new Date()).getTimezoneOffset() / 60,  	};
+  }
+
+  state = {
+  	date: this.props.date,
+    timeZoneOffsetInHours: this.props.timeZoneOffsetInHours,
   }
   onSearchTextChanged(event) {
   	console.log('onSearchTextChanged');
@@ -91,6 +100,17 @@ class AddClass extends Component {
   onContinuePressed(){
   	console.log('onContinuePressed');
   }
+  onDateChange = (date) => {
+    this.setState({date: date});
+  }
+
+  onTimezoneChange = (event) => {
+    var offset = parseInt(event.nativeEvent.text, 10);
+    if (isNaN(offset)) {
+      return;
+    }
+    this.setState({timeZoneOffsetInHours: offset});
+  }
   render() {
   	console.log('SearchPage.render');
     return (
@@ -104,7 +124,6 @@ class AddClass extends Component {
     	    value={this.state.searchString}
     	    onChange={this.onSearchTextChanged.bind(this)}
     		placeholder='name and/or code'/>
-  			
 		</View>
         <Text style={styles.description}>
           # of Credits
@@ -125,6 +144,13 @@ class AddClass extends Component {
 	          style={{marginBottom: 10}}
 	          value={this.state.switchIsOn} />
       	</View>
+      	<DatePickerIOS
+		        date={this.state.date}
+		        mode="time"
+		        timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+		        onDateChange={this.onDateChange}
+		        minuteInterval={10}
+        />
 		<View style={styles.flowRight}>
 			<TouchableHighlight style={styles.button} 
 				onPress={this.onContinuePressed.bind(this)}
@@ -132,6 +158,9 @@ class AddClass extends Component {
 	    		<Text style={styles.buttonText}>Continue</Text>
 	  		</TouchableHighlight>
 	  	</View>
+	  	
+	  		
+       
       </View>
     );
   }
@@ -147,6 +176,11 @@ class ClassTimes extends Component {
 	    	days: {}
 	  	};
   	}
+  	// render() {
+  	// 	console.log('ClassTimes.render');
+   //  	return (
+   //  	);
+   //  }
 }
 
 

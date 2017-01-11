@@ -37,7 +37,7 @@ function CreateNewClass(name, code, times, credits, subclass){
   return cl;
 }
 
-function CreateClassTime(start_time, end_time, days){
+function CreateClassTimes(start_time, end_time, days){
   var ct = {};
   ct.start_time = start_time;
   ct.end_time = end_time;
